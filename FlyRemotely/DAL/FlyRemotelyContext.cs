@@ -13,6 +13,11 @@ namespace FlyRemotely.DAL
         public FlyRemotelyContext() : base("FlyRemotelyContext")
         { }
 
+        static FlyRemotelyContext()
+        {
+            Database.SetInitializer<FlyRemotelyContext>(new FlyRemotelyInitializer());
+        }
+
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Category> Categories { get; set;}
 

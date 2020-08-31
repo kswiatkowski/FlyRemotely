@@ -220,9 +220,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\FlyRemotelyContext.cs" />
+    <Compile Include="DAL\FlyRemotelyInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008310832488_InitialCreate.cs" />
+    <Compile Include="Migrations\202008310832488_InitialCreate.designer.cs">
+      <DependentUpon>202008310832488_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008310927059_test1.cs" />
+    <Compile Include="Migrations\202008310927059_test1.designer.cs">
+      <DependentUpon>202008310927059_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Offer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,6 +260,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202008310832488_InitialCreate.resx">
+      <DependentUpon>202008310832488_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008310927059_test1.resx">
+      <DependentUpon>202008310927059_test1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
