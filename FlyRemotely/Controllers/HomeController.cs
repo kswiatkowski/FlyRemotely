@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FlyRemotely.DAL;
+using FlyRemotely.Models;
 using System.Web.Mvc;
 
 namespace FlyRemotely.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        private FlyRemotelyContext db = new FlyRemotelyContext();
+
         public ActionResult Index()
         {
+
             return View();
         }
     }
