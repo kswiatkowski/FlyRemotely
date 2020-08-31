@@ -3,38 +3,110 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <title>@ViewBag.Title | Portal Pracy w ASP.NET MVC</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/modernizr-2.8.3.js")"></script>
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header>
+        <div class="container-fluid o-login-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#" id="registerLink">Zarejestruj</a></li>
+                            <li><a href="#" id="loginLink">Zaloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+        </div>
+
+        <div class="container-fluid o-navbar">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a href="#" class="o-logo-link">
+                        <img class="o-logo" src="@Url.Content("~/Content/Images/logo-1.png")" /><span class="o-logo-text ">JobPortal</span>
+                    </a>
+
+                    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#mainmenu" style="color: aqua;"><span class="navbar-toggler-icon"></span></button>
+
+                    <div class="collapse navbar-collapse" id="mainmenu">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item px-lg-2 px-xl-3">
+                                <a href="#" class="nav-link o-menu-item">Start</a>
+                            </li>
+                            <li class="nav-item px-lg-2 px-xl-3">
+                                <a href="#" class="nav-link o-menu-item">Oferty Pracy</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle o-menu-item" data-toggle="dropdown">Kategorie<b class="caret"></b></a>
+                                <div class="dropdown-menu">
+                                    <a href="#" class="dropdown-item">Python</a>
+                                    <a href="#" class="dropdown-item">Python</a>
+                                    <a href="#" class="dropdown-item">Python</a>
+                                    <a href="#" class="dropdown-item">Python</a>
+                                    <a href="#" class="dropdown-item">Python</a>
+                                </div>
+                            </li>
+                            <li class="nav-item px-lg-2 px-xl-3">
+                                <a href="#" class="nav-link o-menu-item-social">GitHub</a>
+                            </li>
+                            <li class="nav-item px-lg-2 px-xl-3">
+                                <a href="#" class="nav-link o-menu-item">Profil</a>
+                            </li>
+                            <li class="nav-item px-lg-2 px-xl-3">
+                                <a href="#" class="nav-link o-menu-item o-menu-item-post">Oferty Pracy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid o-baner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="o-baner-text-1">Portal pracy zdalnej</div>
+                    <div class="o-baner-text-2">FlyRemotely</div>
+                    <div class="o-baner-text-3">
+                        w technologii ASP.NET MVC
+                        <br class="d-lg-none">
+                        <a class="o-baner-button">Zastosowane rozwiązania</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6 text-center text-lg-right o-baner-btn-row">
+                    <a href="#" class="o-baner-btn-1">Dodaj Ogłoszenie</a>
+                </div>
+                <div class="col-12 col-lg-6 text-center text-lg-left o-baner-btn-row">
+                    <a href="#" class="o-baner-btn-2">Przeglądaj Oferty</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    @RenderBody()
+
+    <div class="container-fluid o-fotter">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <img class="o-fotter-img" src="@Url.Content("~/Content/Images/logo-1.png")" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 o-fotter-copy">
+                    &copy;2020 Kamil Świątkowski. All Rights Reserved
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

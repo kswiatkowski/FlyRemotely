@@ -1,7 +1,104 @@
-﻿
+﻿@model FlyRemotely.ViewModels.HomeViewModel
+@using FlyRemotely.Infrastructure
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FlyRemotely";
 }
 
-<h2>Index</h2>
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="o-list-heading-1">Oferty Pracy</div>
+            </div>
+            <div class="col-12">
+                <div class="o-list-separator" />
+            </div>
+            <div class="col-12 text-center">
+                <div class="o-list-heading-2">Wyszukaj interesującą Cię ofertę pracy zdalnej, spośród kilkudziesięciu <br>ofert pracy z całego świata. Znajdź swoją <span style="font-weight: 600">wymażoną prace zdalną.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form class="o-search-form" id="search-form" method="get" data-ajax="true" data-ajax-target="#booksList">
+                    <input class="o-search-input" id="search-filter" type="search" name="searchQuery" data-autocomplete-source="/Catalog/SearchTips?categoryName=PHP" placeholder="Szukaj w kategorii PHP" />
+                    <input class="o-search-submit" type="submit" value="" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container o-ad-list-container">
+
+        @foreach (var featuredOffer in Model.FeaturedOffers)
+        {
+            <a href="#" class="o-ad-row-link">
+                <div class="row o-ad-row">
+                    <div class="col-md-2 align-self-center o-ad-company-img-div">
+                        <img class="o-ad-company-img" src="@Url.CompanyPhotoSourcePath(featuredOffer.CompanyPhotoSource)" />
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <div class="o-ad-title">
+                            @featuredOffer.Title
+                        </div>
+                        <div class="o-ad-company-name">
+                            @featuredOffer.CompanyName
+                        </div>
+                        <div class="o-ad-job-type">
+                            @featuredOffer.Type - @featuredOffer.Salary
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <div class="o-ad-featured">
+                            <img class="o-add-star" src="@Url.Content("~/Content/Images/star.png")" /> Wyróżnione
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <div class="o-ad-lang">
+                            @featuredOffer.Category.Name
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+
+        @foreach (var featuredOffer in Model.NormalOffers)
+        {
+            <a href="#" class="o-ad-row-link">
+                <div class="row o-ad-row">
+                    <div class="col-md-2 align-self-center o-ad-company-img-div">
+                        <img class="o-ad-company-img" src="@Url.CompanyPhotoSourcePath(featuredOffer.CompanyPhotoSource)" />
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <div class="o-ad-title">
+                            @featuredOffer.Title
+                        </div>
+                        <div class="o-ad-company-name">
+                            @featuredOffer.CompanyName
+                        </div>
+                        <div class="o-ad-job-type">
+                            @featuredOffer.Type - @featuredOffer.Salary
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <div class="o-ad-featured">
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <div class="o-ad-lang">
+                            @featuredOffer.Category.Name
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+
+    </div>
+</div>
 
