@@ -45,7 +45,7 @@ namespace FlyRemotely.Controllers
                                                         x.Title.ToLower().Contains(searchQuery.ToLower()) ||
                                                         x.Category.Name.ToLower().Contains(searchQuery.ToLower()) ||
                                                         x.CompanyName.ToLower().Contains(searchQuery.ToLower()) &&
-                                                        x.Status == Models.OfferStatus.Aktywne);
+                                                        x.Status == Models.OfferStatus.Aktywne).Take(6).ToList();
 
             if (Request.IsAjaxRequest())
                 return PartialView("_PartialListOffers", offers);

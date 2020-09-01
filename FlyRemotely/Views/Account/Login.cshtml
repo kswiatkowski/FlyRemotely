@@ -1,0 +1,71 @@
+﻿@model FlyRemotely.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Zaloguj";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                @using (@Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken() //checking if the request is from our site
+
+                    <div id="login-error">
+                        @Html.ValidationMessage("loginerror", "")
+                    </div>
+
+                    <table id="login-table" class="o-login-table">
+                        <tr>
+                            <td>@Html.LabelFor(o => o.Email)</td>
+                            <td>
+                                @Html.TextBoxFor(o => o.Email)
+                                <div class="login-validation-message o-login-validation-msg">
+                                    @Html.ValidationMessageFor(o => o.Email)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(o => o.Password)</td>
+                            <td>
+                                @Html.PasswordFor(o => o.Password)
+                                <div class="login-validation-message o-login-validation-msg">
+                                    @Html.ValidationMessageFor(o => o.Password)
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.Remember, new { @checked = "checked" })
+                                    @Html.LabelFor(m => m.Remember)
+                                </div>
+                                <div class="o-login-btn-div">
+                                    <input type="submit" value="Zaloguj" class="o-login-btn" />
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+                <div style="text-align: center;">
+                    <div class="o-login-register-btn">
+                        Nie masz jeszcze konta? <a href="@Url.Action("Register")">Zarejestruj się!</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+} 

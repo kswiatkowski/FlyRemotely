@@ -1,0 +1,27 @@
+﻿@using MvcSiteMapProvider.Web.Html
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid o-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 o-nav-track">
+                @Html.MvcSiteMap().SiteMapPath()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 o-page-heading">
+                @ViewBag.Title
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+</div>
+
+@section Scripts
+{
+    @RenderSection("Scripts", required: false)
+}  
