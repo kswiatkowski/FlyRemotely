@@ -13,10 +13,8 @@ namespace FlyRemotely.Controllers
     {
         private FlyRemotelyContext db = new FlyRemotelyContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchQuery = null)
         {
-            var offers = db.Offers.Include("Category").Where(x => x.Status == Models.OfferStatus.Aktywne).OrderBy(x => Guid.NewGuid()).Take(6).ToList();
-
             ICacheProvider cache = new DefaultCacheProvider();
 
             List<Category> categories;
@@ -41,8 +39,31 @@ namespace FlyRemotely.Controllers
                 cache.Set(Consts.FeaturedCacheKey, featuredOffers, 24);
             }
 
+            //version without search engine
+            //var offers = db.Offers.Include("Category").Where(x => x.Status == Models.OfferStatus.Aktywne).OrderBy(x => Guid.NewGuid()).Take(6).ToList();
+            var offers = db.Offers.Include("Category").Where(x => searchQuery == null ||
+                                                        x.Title.ToLower().Contains(searchQuery.ToLower()) ||
+                                                        x.Category.Name.ToLower().Contains(searchQuery.ToLower()) ||
+                                                        x.CompanyName.ToLower().Contains(searchQuery.ToLower()) &&
+                                                        x.Status == Models.OfferStatus.Aktywne);
+
+            if (Request.IsAjaxRequest())
+                return PartialView("_PartialListOffers", offers);
+
+
+
             var vm = new HomeViewModel { FeaturedOffers = featuredOffers, NormalOffers = offers, Categories = categories };
             return View(vm);
+        }
+
+        public ActionResult SearchTips(string term)
+        {
+            var offers = db.Offers.Where(x => x.Status == Models.OfferStatus.Aktywne &&
+                                                        (x.Title.ToLower().Contains(term.ToLower()))
+                                                        || (x.Category.Name.ToLower().Contains(term.ToLower())))
+                                                        .Take(4).Select(x => new { label = x.Title });
+
+            return Json(offers, JsonRequestBehavior.AllowGet);
         }
     }
 }

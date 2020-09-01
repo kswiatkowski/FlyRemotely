@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | Portal Pracy w ASP.NET MVC</title>
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/core.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/autocomplete.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/theme.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/menu.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/modernizr-2.8.3.js")"></script>
 </head>
@@ -110,3 +114,5 @@
 
 </body>
 </html>
+
+@RenderSection("Scripts", required: false)

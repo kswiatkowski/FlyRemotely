@@ -31,8 +31,9 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <form class="o-search-form" id="search-form" method="get" data-ajax="true" data-ajax-target="#booksList">
-                    <input class="o-search-input" id="search-filter" type="search" name="searchQuery" data-autocomplete-source="/Catalog/SearchTips?categoryName=PHP" placeholder="Szukaj w kategorii PHP" />
+                <form class="o-search-form" id="search-form" method="get" data-ajax="true" data-ajax-target="#offersList">
+                    <input class="o-search-input" id="search-filter" type="search" name="searchQuery"
+                           data-autocomplete-source="@Url.Action("SearchTips")" placeholder="Wpisz nazwę stanowiska lub technologię..." />
                     <input class="o-search-submit" type="submit" value="" />
                 </form>
             </div>
@@ -40,9 +41,10 @@
     </div>
 </div>
 
-@Html.Partial("_PartialFeaturedOffers", Model.FeaturedOffers)
+<div class="container-fluid" id="offersList">
 
-<div class="container-fluid">
+    @Html.Partial("_PartialFeaturedOffers", Model.FeaturedOffers)
+
     <div class="container o-ad-list-container">
         <hr />
         @foreach (var offer in Model.NormalOffers)
@@ -80,3 +82,43 @@
     </div>
 </div>
 
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script>
+        $(function () {
+            var setupAutoComplete = function () {
+                var $input = $(this);
+                var options =
+                {
+                    source: $input.attr("data-autocomplete-source"),
+                    select: function (event, ui) {
+                        $input = $(this);
+                        $input.val(ui.item.label);
+                        var $form = $input.parents("form:first");
+                        $form.submit();
+                    }
+                };
+                $input.autocomplete(options);
+            };
+            var ajaxSubmit = function () {
+                var $form = $(this);
+                var settings = {
+                    data: $(this).serialize(),
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method")
+                };
+                $.ajax(settings).done(function (result) {
+                    var $targetElement = $($form.data("ajax-target"));
+                    var $newContent = $(result);
+                    $($targetElement).replaceWith($newContent);
+                    $newContent.effect("slide");
+                });
+                return false;
+            };
+            $("#search-filter").each(setupAutoComplete);
+            $("#search-form").submit(ajaxSubmit);
+        });
+    </script>
+}

@@ -1,41 +1,43 @@
 ﻿@model IEnumerable<FlyRemotely.Models.Offer>
 @using FlyRemotely.Infrastructure
 
-<div class="container-fluid">
-    <div class="container o-ad-list-container">
-        @foreach (var offer in Model)
-        {
-            <a href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })" class="o-ad-row-link">
-                <div class="row o-ad-row">
-                    <div class="col-md-2 align-self-center o-ad-company-img-div">
-                        <img class="o-ad-company-img" src="@Url.CompanyPhotoSourcePath(offer.CompanyPhotoSource)" />
+
+<div class="container o-ad-list-container">
+    @foreach (var offer in Model)
+    {
+        <a href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })" class="o-ad-row-link">
+            <div class="row o-ad-row">
+                <div class="col-md-2 align-self-center o-ad-company-img-div">
+                    <img class="o-ad-company-img" src="@Url.CompanyPhotoSourcePath(offer.CompanyPhotoSource)" />
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <div class="o-ad-title">
+                        @offer.Title
                     </div>
-                    <div class="col-md-6 align-self-center">
-                        <div class="o-ad-title">
-                            @offer.Title
-                        </div>
-                        <div class="o-ad-company-name">
-                            @offer.CompanyName
-                        </div>
-                        <div class="o-ad-job-type">
-                            @offer.Type - @offer.Salary
-                        </div>
+                    <div class="o-ad-company-name">
+                        @offer.CompanyName
                     </div>
-                    <div class="col-md-2 align-self-center">
-                        <div class="o-ad-featured">
-                            <img class="o-add-star" src="@Url.Content("~/Content/Images/star.png")" /> Wyróżnione
-                        </div>
-                        <div class="o-add-date">
-                            Od @offer.DateAdded.ToString("dd.MM.yyyy")
-                        </div>
-                    </div>
-                    <div class="col-md-2 align-self-center">
-                        <div class="o-ad-lang">
-                            @offer.Category.Name
-                        </div>
+                    <div class="o-ad-job-type">
+                        @offer.Type - @offer.Salary
                     </div>
                 </div>
-            </a>
-        }
-    </div>
+                <div class="col-md-2 align-self-center">
+                    <div class="o-ad-featured">
+                        <img class="o-add-star" src="@Url.Content("~/Content/Images/star.png")" /> Wyróżnione
+                    </div>
+                    <div class="o-add-date">
+                        Od @offer.DateAdded.ToString("dd.MM.yyyy")
+                    </div>
+                </div>
+                <div class="col-md-2 align-self-center">
+                    <div class="o-ad-lang">
+                        @offer.Category.Name
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
 </div>
+
+
+
