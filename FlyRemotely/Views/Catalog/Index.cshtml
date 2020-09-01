@@ -1,7 +1,7 @@
-﻿@model FlyRemotely.ViewModels.HomeViewModel
+﻿@model IEnumerable<FlyRemotely.Models.Offer>
 @using FlyRemotely.Infrastructure
 @{
-    ViewBag.Title = "FlyRemotely";
+    ViewBag.Title = "Oferty";
 }
 
 <div class="container-fluid">
@@ -20,32 +20,12 @@
     </div>
 </div>
 
-@Html.Partial("_PartialCategoriesNav", Model.Categories)
-
-<div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 o-category-nav-heading">
-                Wyszukaj spośród wszystkich ofert:
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <form class="o-search-form" id="search-form" method="get" data-ajax="true" data-ajax-target="#booksList">
-                    <input class="o-search-input" id="search-filter" type="search" name="searchQuery" data-autocomplete-source="/Catalog/SearchTips?categoryName=PHP" placeholder="Szukaj w kategorii PHP" />
-                    <input class="o-search-submit" type="submit" value="" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-@Html.Partial("_PartialFeaturedOffers", Model.FeaturedOffers)
+@Html.Action("GetFeaturedOffers", new { quantity = 1 })
 
 <div class="container-fluid">
     <div class="container o-ad-list-container">
         <hr />
-        @foreach (var offer in Model.NormalOffers)
+        @foreach (var offer in Model)
         {
             <a href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })" class="o-ad-row-link">
                 <div class="row o-ad-row">
@@ -64,8 +44,14 @@
                         </div>
                     </div>
                     <div class="col-md-2 align-self-center">
-                        <div class="o-add-date">
-                            Od @offer.DateAdded.ToString("dd.MM.yyyy")
+                        <div class="o-ad-featured">
+                            @if (offer.Featured)
+                            {
+                                <img class="o-add-star" src="@Url.Content("~/Content/Images/star.png")" /><span>Wyróżnione</span>
+                            }
+                            <div class="o-add-date">
+                                Od @offer.DateAdded.ToString("dd.MM.yyyy")
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-2 align-self-center">
@@ -76,7 +62,7 @@
                 </div>
             </a>
         }
-
     </div>
 </div>
 
+@Html.Action("GetCategories")

@@ -13,9 +13,10 @@ namespace FlyRemotely.Controllers
         public ActionResult Index()
         {
             var featuredOffers = db.Offers.Include("Category").Where(x => x.Featured && x.Status == Models.OfferStatus.Aktywne).OrderBy(x => Guid.NewGuid()).Take(2).ToList();
-            var normalOffers = db.Offers.Include("Category").Where(x => !x.Featured && x.Status == Models.OfferStatus.Aktywne).OrderBy(x => Guid.NewGuid()).Take(6).ToList();
+            var offers = db.Offers.Include("Category").Where(x => x.Status == Models.OfferStatus.Aktywne).OrderBy(x => Guid.NewGuid()).Take(6).ToList();
+            var categories = db.Categories.ToList();
 
-            var vm = new HomeViewModel { FeaturedOffers = featuredOffers, NormalOffers = normalOffers };
+            var vm = new HomeViewModel { FeaturedOffers = featuredOffers, NormalOffers = offers, Categories = categories };
             return View(vm);
         }
     }

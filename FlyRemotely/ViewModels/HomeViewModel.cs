@@ -10,5 +10,6 @@ namespace FlyRemotely.ViewModels
     {
         public IEnumerable<Offer> FeaturedOffers { get; set; }
         public IEnumerable<Offer> NormalOffers { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
     }
 }

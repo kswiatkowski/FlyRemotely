@@ -1,0 +1,19 @@
+﻿@model IEnumerable<FlyRemotely.Models.Category>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 o-category-nav-heading">
+                Przejdź do ofert z kategorii, która Cię interesuje:
+            </div>
+            <div class="col-12 d-flex justify-content-around flex-wrap">
+                @foreach (var category in Model)
+                {
+                    <a href="@Url.Action("Index", "Catalog", new { categoryId = category.CategoryId })" class="o-link">
+                        <div class="o-category-nav-item">@category.Name</div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿@model FlyRemotely.Models.Offer
+@using FlyRemotely.Infrastructure
+@{
+    ViewBag.Title = "Szczegóły oferty";
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 o-site-nav">
+                Home > JavaScript > Oferta-6
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 o-details-title">
+                <hr>
+                @Model.Title
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 o-details-div">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 o-details-job-type">
+                            <span class="o-text-span-bold">Wymiar czasu pracy: </span><span class="o-text-span-light">@Model.Type</span>
+                        </div>
+                        <div class="col-12 o-details-job-type">
+                            <span class="o-text-span-bold">Wynagrodzenie: </span><span class="o-text-span-light">@Model.Salary</span>
+                        </div>
+                        <div class="col-12 o-details-requirements">
+                            <span class="o-text-span-bold">Wymagania:</span> <br>
+                            <span class="o-text-span-light">@Model.Requirements</span>
+                        </div>
+                        <div class="col-12 o-details-desc">
+                            <span class="o-text-span-bold">Opis stanowiska:</span> <br>
+                            <span class="o-text-span-light">@Model.Description</span>
+                        </div>
+                        <div class="col-12 o-details-job-type">
+                            <span class="o-text-span-bold">Technologia: </span>
+                            <a href="@Url.Action("Index", "Catalog", new { categoryId = Model.Category.CategoryId })" class="">
+                                <div class="o-details-lang">
+                                    @Model.Category.Name
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 o-details-company-title">
+                            Pracodawca:
+                        </div>
+                        <div class="col-12 o-details-company-img-div">
+                            <img class="o-details-company-img" src="@Url.CompanyPhotoSourcePath(Model.CompanyPhotoSource)" />
+                        </div>
+                        <div class="col-12 o-details-company-name">
+                            @Model.CompanyName
+                        </div>
+                        <div class="col-12 o-details-company-desc">
+                            <span class="o-text-span-light">@Model.CompanyDescription</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row o-details-btn-div">
+            <div class="col-12 col-lg-6 text-center text-lg-right o-details-btn-row">
+                <a href="#" class="o-details-btn-1">Zapisz ofertę</a>
+            </div>
+            <div class="col-12 col-lg-6 text-center text-lg-left o-details-btn-row">
+                <a href="#" class="o-details-btn-2">Aplikuj na ofertę</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container o-details-featured-cont">
+        <div class="row">
+            <div class="col-12">
+                <hr>
+                <div class="o-details-featurde-title">Inne wyróżnione oferty:</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Action("GetFeaturedOffers", new { quantity = 2 })
+
+@Html.Action("GetCategories")
