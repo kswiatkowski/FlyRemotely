@@ -1,5 +1,6 @@
 ﻿@model FlyRemotely.Models.Offer
 @using FlyRemotely.Infrastructure
+@using MvcSiteMapProvider.Web.Html
 @{
     ViewBag.Title = "Szczegóły oferty";
 }
@@ -7,8 +8,8 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-12 o-site-nav">
-                Home > JavaScript > Oferta-6
+            <div class="col-12 o-site-nav-details">
+                @Html.MvcSiteMap().SiteMapPath()
             </div>
 
         </div>
@@ -49,7 +50,7 @@
                         </div>
                         <div class="col-12 o-details-job-type">
                             <span class="o-text-span-bold">Technologia: </span>
-                            <a href="@Url.Action("Index", "Catalog", new { categoryId = Model.Category.CategoryId })" class="">
+                            <a href="@Url.Action("Index", "Catalog", new { categoryName = Model.Category.Name })" class="">
                                 <div class="o-details-lang">
                                     @Model.Category.Name
                                 </div>

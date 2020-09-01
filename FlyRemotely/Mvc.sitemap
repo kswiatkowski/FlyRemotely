@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+    <mvcSiteMapNode title="Category" controller="Catalog" action="Index" dynamicNodeProvider="FlyRemotely.Infrastructure.CategoriesDynamicNodeProvider, FlyRemotely">
+      <mvcSiteMapNode title="Offer" controller="Catalog" action="Details" dynamicNodeProvider="FlyRemotely.Infrastructure.OffersDynamicNodeProvider, FlyRemotely" />
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+
+</mvcSiteMap>

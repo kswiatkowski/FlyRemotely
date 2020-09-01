@@ -9,7 +9,7 @@
             <div class="col-12 d-flex justify-content-around flex-wrap">
                 @foreach (var category in Model)
                 {
-                    <a href="@Url.Action("Index", "Catalog", new { categoryId = category.CategoryId })" class="o-link">
+                    <a href="@Url.Action("Index", "Catalog", new { categoryName = category.Name })" class="o-link">
                         <div class="o-category-nav-item">@category.Name</div>
                     </a>
                 }

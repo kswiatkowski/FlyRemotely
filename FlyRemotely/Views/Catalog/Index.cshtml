@@ -7,8 +7,19 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
+            <div class="col-12 o-site-nav-catalog">
+                @Html.MvcSiteMap().SiteMapPath()
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
             <div class="col-12">
-                <div class="o-list-heading-1">Oferty Pracy</div>
+                <div class="o-list-heading-1">Oferty Pracy @Model.First().Category.Name</div>
             </div>
             <div class="col-12">
                 <div class="o-list-separator" />

@@ -11,18 +11,16 @@ namespace FlyRemotely.Controllers
     public class CatalogController : Controller
     {
         private FlyRemotelyContext db = new FlyRemotelyContext();
-        public ActionResult Index(int? categoryId = null)
+        public ActionResult Index(string categoryName = null)
         {
             var offers = new List<Offer>();
 
-            if (categoryId == null)
+            if (categoryName == null)
             {
-                offers = db.Offers.Where(x => x.Status == Models.OfferStatus.Aktywne && x.Category.CategoryId == 1).OrderBy(x => x.Featured).ToList();
+                categoryName = db.Categories.Find(1).Name.ToLower();
             }
-            else
-            {
-                offers = db.Offers.Where(x => x.Status == Models.OfferStatus.Aktywne && x.Category.CategoryId == categoryId).OrderBy(x => x.Featured).ToList();
-            }
+            
+            offers = db.Offers.Where(x => x.Status == Models.OfferStatus.Aktywne && x.Category.Name == categoryName.ToLower()).OrderBy(x => x.Featured).ToList();
             return View(offers);
         }
 
