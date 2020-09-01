@@ -1,14 +1,11 @@
 ﻿using FlyRemotely.Models;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
 
 namespace FlyRemotely.DAL
 {
-    public class FlyRemotelyContext : DbContext
+    public class FlyRemotelyContext : IdentityDbContext<ApplicationUser>
     {
         public FlyRemotelyContext() : base("FlyRemotelyContext")
         { }
@@ -16,6 +13,11 @@ namespace FlyRemotely.DAL
         static FlyRemotelyContext()
         {
             Database.SetInitializer<FlyRemotelyContext>(new FlyRemotelyInitializer());
+        }
+
+        public static FlyRemotelyContext Create()
+        {
+            return new FlyRemotelyContext();
         }
 
         public DbSet<Offer> Offers { get; set; }
