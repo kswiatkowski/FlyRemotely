@@ -36,7 +36,6 @@ namespace FlyRemotely.Controllers
             }
         }
 
-
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -45,7 +44,6 @@ namespace FlyRemotely.Controllers
             }
         }
 
-        // GET: Manage
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             if (TempData["ViewData"] != null)
@@ -160,13 +158,29 @@ namespace FlyRemotely.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public OfferStatus ChangeOrderStatus(Offer offer)
+        public OfferStatus ChangeOfferStatus(Offer offer)
         {
             Offer offerToModify = db.Offers.Find(offer.OfferId);
             offerToModify.Status = offer.Status;
             db.SaveChanges();
 
             return offer.Status;
+        }
+
+        [Authorize]
+        public ActionResult ChangeOfferStatusUser(int offerId, bool isActive)
+        {
+            Offer offerToModify = db.Offers.Find(offerId);
+            if (isActive)
+            {
+                offerToModify.Status = Models.OfferStatus.Nieaktywne;
+            }
+            else
+            {
+                offerToModify.Status = Models.OfferStatus.Aktywne;
+            }
+            db.SaveChanges();
+            return RedirectToAction("OffersList");
         }
     }
 }

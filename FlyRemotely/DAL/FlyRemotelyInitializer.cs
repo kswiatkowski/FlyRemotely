@@ -1,5 +1,7 @@
 ﻿using FlyRemotely.Migrations;
 using FlyRemotely.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -42,7 +44,7 @@ namespace FlyRemotely.DAL
                 new Offer() { OfferId = 14, CategoryId = 5, Status = OfferStatus.Aktywne, Title = "Senior PHP Developer", Type = "Pełny etat", Salary = "4 500 zł./mies.", CompanyName = "Fast Blue Engine", CompanyWebsite = "fast-b-engine.com", CompanyPhotoSource = "company14.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
                 new Offer() { OfferId = 15, CategoryId = 5, Status = OfferStatus.Aktywne, Title = "Web/PHP Developer", Type = "1/2 etatu", Salary = "8 500 zł./mies.", CompanyName = "Visual Game", CompanyWebsite = "visualgame.com", CompanyPhotoSource = "company15.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
                 new Offer() { OfferId = 16, CategoryId = 6, Status = OfferStatus.Aktywne, Title = "Devops Python/GO Engineer", Type = "Pełny etat", Salary = "6 500 zł./mies.", CompanyName = "Top Inline", CompanyWebsite = "top-inline.com", CompanyPhotoSource = "company16.png", Featured = true, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
-                new Offer() { OfferId = 17, CategoryId = 6, Status = OfferStatus.Aktywne, Title = "Młodszy programista Djando", Type = "Pełny etat", Salary = "8 500 zł./mies.", CompanyName = "Yellow Code", CompanyWebsite = "yellowcode.com", CompanyPhotoSource = "company17.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
+                new Offer() { OfferId = 17, CategoryId = 6, Status = OfferStatus.Aktywne, Title = "Młodszy programista Django", Type = "Pełny etat", Salary = "8 500 zł./mies.", CompanyName = "Yellow Code", CompanyWebsite = "yellowcode.com", CompanyPhotoSource = "company17.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
                 new Offer() { OfferId = 18, CategoryId = 6, Status = OfferStatus.Aktywne, Title = "C++/Python Developer", Type = "3/5 etatu", Salary = "8 500 zł./mies.", CompanyName = "Visual Game", CompanyWebsite = "visualgame.com", CompanyPhotoSource = "company18.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
                 new Offer() { OfferId = 19, CategoryId = 7, Status = OfferStatus.Aktywne, Title = "Starszy programista C#", Type = "Pełny etat", Salary = "8 500 zł./mies.", CompanyName = "FGT Tech", CompanyWebsite = "fgttech.com", CompanyPhotoSource = "company1.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
                 new Offer() { OfferId = 20, CategoryId = 7, Status = OfferStatus.Aktywne, Title = "Regular ASP.NET MVC Developer", Type = "1/2 etatu", Salary = "10 500 zł./mies.", CompanyName = "Tea Mont", CompanyWebsite = "tea-mont.com", CompanyPhotoSource = "company2.png", Featured = false, DateAdded = DateTime.Now, Requirements = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", Description = "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Labore et dolore magna aliqua. Ut enim ad minim veniam.", CompanyDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt." },
@@ -50,6 +52,38 @@ namespace FlyRemotely.DAL
              };
             offers.ForEach(x => context.Offers.AddOrUpdate(x));
             context.SaveChanges();
+        }
+
+        public static void SeedUsers(FlyRemotelyContext db)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            const string name = "admin@flyremotely.pl";
+            const string password = "Admin1!";
+            const string roleName = "Admin";
+
+            var user = userManager.FindByName(name);
+            if (user == null)
+            {
+                user = new ApplicationUser { UserName = name, Email = name };
+                var result = userManager.Create(user, password);
+            }
+
+            // create the Admin role if it does not exist
+            var role = roleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new IdentityRole(roleName);
+                var roleresult = roleManager.Create(role);
+            }
+
+            // adding a user to the Admin role if it is not assigned
+            var rolesForUser = userManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                var result = userManager.AddToRole(user.Id, role.Name);
+            }
         }
     }
 }

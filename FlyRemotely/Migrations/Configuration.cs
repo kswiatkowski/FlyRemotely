@@ -14,6 +14,7 @@
         protected override void Seed(FlyRemotely.DAL.FlyRemotelyContext context)
         {
             FlyRemotelyInitializer.SeedFlyRemotelyData(context);
+            FlyRemotelyInitializer.SeedUsers(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method

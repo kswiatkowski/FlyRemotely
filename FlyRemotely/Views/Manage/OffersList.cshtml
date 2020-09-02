@@ -12,7 +12,7 @@
                     <a class="o-manage-bar-btn" href="@Url.Action("Index", "Manage")">Edycja danych</a>
                 </div>
                 <div class="o-manage-bar-btn-div">
-                    <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Lista zamówień</a>
+                    <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Lista ofert</a>
                 </div>
                 @*<div class="o-manage-bar-btn-div">
                         <a class="o-manage-bar-btn" href="#">Dodaj kurs</a>
@@ -56,10 +56,10 @@
                     <span class="o-text-span-bold">Status:</span> <br class="o-offer-br">
                     @if (ViewBag.UserIsAdmin)
                     {
-                        using (Html.BeginForm("ChangeOrderStatus", "Manage"))
+                        using (Html.BeginForm("ChangeOfferStatus", "Manage"))
                         {
                             @Html.HiddenFor(o => offer.OfferId)
-                            @Html.EnumDropDownListFor(o => offer.OfferId, new { @class = "ChangeStatus" })
+                            @Html.EnumDropDownListFor(o => offer.Status, new { @class = "ChangeStatus" })
                         }
                     }
                     else
@@ -69,18 +69,18 @@
                 </div>
                 <div class="col-12 col-lg-2 align-self-center">
                     <div class="o-offer-item-btn-div">
-                        <a class="o-offer-item-btn" href="#">Podgląd</a>
+                        <a class="o-offer-item-btn" href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })">Podgląd</a>
                     </div>
-                    @if (offer.Status == FlyRemotely.Models.OfferStatus.Nieaktywne)
+                    @if (ViewBag.UserIsAdmin == false && offer.Status == FlyRemotely.Models.OfferStatus.Nieaktywne)
                     {
                         <div class="o-offer-item-btn-div">
-                            <a class="o-offer-item-btn" href="#">Aktywuj</a>
+                            <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferStatusUser", "Manage", new { offerId = offer.OfferId, isActive = false })">Aktywuj</a>
                         </div>
                     }
-                    else if (offer.Status == FlyRemotely.Models.OfferStatus.Aktywne)
+                    else if (ViewBag.UserIsAdmin == false && offer.Status == FlyRemotely.Models.OfferStatus.Aktywne)
                     {
                         <div class="o-offer-item-btn-div">
-                            <a class="o-offer-item-btn" href="#">Dezaktywuj</a>
+                            <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferStatusUser", "Manage", new { offerId = offer.OfferId, isActive = true })">Dezaktywuj</a>
                         </div>
                     }
                 </div>
@@ -100,4 +100,22 @@
 @section Scripts
 {
     <script src="~/Scripts/jquery-3.5.1.js"></script>
+
+    <script>
+    $(".ChangeStatus").on('change', function (e) {
+        //e.preventDefault();
+        var f = $(this.form);
+        var div = f.closest("div");
+        var action = f.attr("action");
+        var serializedForm = f.serialize();
+        $.post(action, serializedForm).done(function (data) {
+            if (data == '@FlyRemotely.Models.OfferStatus.Oczekuje.ToString()') {
+                div.addClass("o-newStatus")
+            }
+            else {
+                div.removeClass("o-newStatus");
+            }
+          });
+    });
+    </script>
 }

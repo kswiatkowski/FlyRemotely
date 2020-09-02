@@ -10,7 +10,7 @@
     <mvcSiteMapNode title="Moje konto" controller="Manage" action="Index">
       <mvcSiteMapNode title="Rejestracja" controller="Account" action="Register" />
       <mvcSiteMapNode title="Logowanie" controller="Account" action="Login" />
-      <mvcSiteMapNode title="Edycja konta" controller="Manage" action="Index" />
+      <mvcSiteMapNode title="Lista ofert" controller="Manage" action="OffersList" />
       <mvcSiteMapNode title="Ulubione oferty" controller="Manage" action="FavoriteOffers" />
     </mvcSiteMapNode>
   </mvcSiteMapNode>

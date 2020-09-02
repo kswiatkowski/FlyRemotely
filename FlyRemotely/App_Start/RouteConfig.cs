@@ -24,6 +24,26 @@ namespace FlyRemotely
               defaults: new { controller = "Catalog", action = "Details" });
 
             routes.MapRoute(
+               name: "Login",
+               url: "moje-konto/zaloguj",
+               defaults: new { controller = "Account", action = "Login" });
+
+            routes.MapRoute(
+               name: "Register",
+               url: "moje-konto/zarejestruj",
+               defaults: new { controller = "Account", action = "Register" });
+
+            routes.MapRoute(
+               name: "UserData",
+               url: "moje-konto/edycja-danych",
+               defaults: new { controller = "Manage", action = "Index" });
+
+            routes.MapRoute(
+               name: "OffersList",
+               url: "moje-konto/lista-ofert",
+               defaults: new { controller = "Manage", action = "OffersList" });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
