@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FlyRemotely.Models.Offer>
+@{
+    ViewBag.Title = "Moje konto";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <div class="d-flex justify-content-around">
+                <div class="o-manage-bar-btn-div">
+                    <a class="o-manage-bar-btn" href="@Url.Action("Index", "Manage")">Edycja danych</a>
+                </div>
+                <div class="o-manage-bar-btn-div">
+                    <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Lista zamówień</a>
+                </div>
+                @*<div class="o-manage-bar-btn-div">
+                        <a class="o-manage-bar-btn" href="#">Dodaj kurs</a>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2 o-manage-heading">
+            Lista zamówień
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    @if (Model.Any())
+    {
+        foreach (var offer in Model)
+        {
+            <div class="row o-offer-group text-center">
+                <div class="col-12 col-lg-2 align-self-center">
+                    <span class="o-text-span-bold">Nr. oferty:</span> <br class="o-offer-br">
+                    <span class="o-text-span-light">@offer.OfferId</span> <br>
+                </div>
+                <div class="col-12 col-lg-2 align-self-center">
+                    <span class="o-text-span-bold">Tytuł:</span> <br class="o-offer-br">
+                    <span class="o-text-span-light">@offer.Title</span> <br>
+                </div>
+                <div class="col-12 col-lg-2 align-self-center">
+                    <span class="o-text-span-bold">Kategoria:</span> <br class="o-offer-br">
+                    <span class="o-text-span-light">@offer.Category.Name</span> <br>
+                </div>
+                <div class="col-12 col-lg-2 align-self-center">
+                    <span class="o-text-span-bold">Data:</span> <br class="o-offer-br">
+                    <span class="o-text-span-light">@offer.DateAdded.ToString("dd-MM-yyyy")</span>
+                </div>
+                <div class="col-12 col-lg-2 align-self-center">
+                    <span class="o-text-span-bold">Status:</span> <br class="o-offer-br">
+                    @if (ViewBag.UserIsAdmin)
+                    {
+                        using (Html.BeginForm("ChangeOrderStatus", "Manage"))
+                        {
+                            @Html.HiddenFor(o => offer.OfferId)
+                            @Html.EnumDropDownListFor(o => offer.OfferId, new { @class = "ChangeStatus" })
+                        }
+                    }
+                    else
+                    {
+                        <span class="o-text-span-light">@offer.Status</span>
+                    }
+                </div>
+                <div class="col-12 col-lg-2 align-self-center">
+                    <div class="o-offer-item-btn-div">
+                        <a class="o-offer-item-btn" href="#">Podgląd</a>
+                    </div>
+                    @if (offer.Status == FlyRemotely.Models.OfferStatus.Nieaktywne)
+                    {
+                        <div class="o-offer-item-btn-div">
+                            <a class="o-offer-item-btn" href="#">Aktywuj</a>
+                        </div>
+                    }
+                    else if (offer.Status == FlyRemotely.Models.OfferStatus.Aktywne)
+                    {
+                        <div class="o-offer-item-btn-div">
+                            <a class="o-offer-item-btn" href="#">Dezaktywuj</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12 o-offer-empty">
+                Brak ofert
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+}

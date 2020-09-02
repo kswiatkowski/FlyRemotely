@@ -1,9 +1,12 @@
 ﻿using FlyRemotely.App_Start;
+using FlyRemotely.DAL;
 using FlyRemotely.Models;
 using FlyRemotely.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +16,7 @@ namespace FlyRemotely.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private FlyRemotelyContext db = new FlyRemotelyContext();
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
@@ -133,6 +137,36 @@ namespace FlyRemotely.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie, DefaultAuthenticationTypes.TwoFactorCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+        }
+
+        public ActionResult OffersList()
+        {
+            bool isAdmin = User.IsInRole("Admin");
+            ViewBag.UserIsAdmin = isAdmin;
+
+            IEnumerable<Offer> userOffers;
+
+            if (true)
+            {
+                userOffers = db.Offers.Include("Category").OrderByDescending(x => x.DateAdded).ToArray();
+            }
+            else
+            {
+                var userId = User.Identity.GetUserId();
+                userOffers = db.Offers.Include("Category").Where(x => x.UserId == userId).OrderByDescending(x => x.DateAdded).ToArray();
+            }
+            return View(userOffers);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public OfferStatus ChangeOrderStatus(Offer offer)
+        {
+            Offer offerToModify = db.Offers.Find(offer.OfferId);
+            offerToModify.Status = offer.Status;
+            db.SaveChanges();
+
+            return offer.Status;
         }
     }
 }

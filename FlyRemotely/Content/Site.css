@@ -21,6 +21,10 @@ body {
     font-size: 16px;
 }
 
+.hidden {
+    display: none;
+}
+
 .o-text-span-bold {
     font-weight: 600;
 }
@@ -779,3 +783,135 @@ body {
     font-weight: 300;
     color: red;
 }
+
+.o-form-validation-msg {
+    font-weight: 300;
+    color: red;
+    padding-left: 1px;
+}
+
+.manage-message {
+    text-align: center;
+    color: green;
+    font-size: 16px;
+}
+
+@media (max-width: 991px) {
+    .validation-summary-errors {
+        font-size: 14px;
+    }
+
+    .field-validation-error {
+        font-size: 14px;
+    }
+
+    .manage-message {
+        font-size: 14px;
+    }
+}
+
+.o-manage-heading {
+    font-size: 35px;
+    font-weight: 300;
+    text-align: center
+}
+
+@media (max-width: 991px) {
+    .o-manage-heading {
+        font-size: 25px;
+    }
+}
+
+.o-manage-bar-btn-div {
+    text-align: center;
+    padding-bottom: 60px;
+    padding-top: 10px;
+}
+
+.o-manage-bar-btn {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 300;
+    padding: 4px 32px 4px 32px;
+    background-color: transparent;
+    border: 1px solid black;
+    transition: all 0.5s;
+    color: black;
+}
+
+    .o-manage-bar-btn:hover {
+        color: #19b5fe;
+        border: 1px solid #19b5fe;
+        text-decoration: none;
+    }
+
+@media (max-width: 991px) {
+    .o-manage-bar-btn {
+        font-size: 14px;
+        padding: 4px 10px 4px 10px;
+    }
+}
+
+.o-offer-group {
+    border: 0px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.o-offer-empty {
+    font-size: 25px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-weight: 300;
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    .o-offer-group {
+        font-size: 14px;
+    }
+
+    .o-offer-br {
+        display: none;
+    }
+
+    .o-offer-empty {
+        font-size: 17px;
+    }
+}
+
+.o-offer-item-btn-div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.o-offer-item-btn {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 300;
+    padding: 0px 15px 0px 15px;
+    background-color: transparent;
+    border: 1px solid black;
+    transition: all 0.5s;
+    color: black;
+}
+
+    .o-offer-item-btn:hover {
+        color: #19b5fe;
+        border: 1px solid #19b5fe;
+        text-decoration: none;
+    }
+
+@media (max-width: 991px) {
+    .o-offer-item-btn {
+        font-size: 14px;
+        padding: 0px 5px 0px 5px;
+    }
+}
+

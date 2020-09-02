@@ -26,9 +26,9 @@ namespace FlyRemotely.Models
 
     public enum OfferStatus
     {
-        Nowe,
+        Oczekuje,
         Aktywne,
-        Przeterminowane,
+        Nieaktywne,
         Zablokowane
     }
 }
