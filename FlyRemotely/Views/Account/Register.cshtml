@@ -10,18 +10,18 @@
             <div class="col-12">
                 @using (@Html.BeginForm("Register", "Account"))
                 {
-                    @Html.AntiForgeryToken() //checking if the request is from our site
+                    @Html.AntiForgeryToken() //checking if the request comes from our site
 
                     <div id="login-error">
                         @Html.ValidationMessage("loginerror", "")
                     </div>
 
-                    <table id="login-table" class="o-login-table">
+                    <table id="login-table" class="o-form-table">
                         <tr>
                             <td>@Html.LabelFor(o => o.Email)</td>
                             <td>
                                 @Html.TextBoxFor(o => o.Email)
-                                <div class="login-validation-message o-login-validation-msg">
+                                <div class="login-validation-message o-form-validation-msg">
                                     @Html.ValidationMessageFor(o => o.Email)
                                 </div>
                             </td>
@@ -30,7 +30,7 @@
                             <td>@Html.LabelFor(o => o.Password)</td>
                             <td>
                                 @Html.PasswordFor(o => o.Password)
-                                <div class="login-validation-message o-login-validation-msg">
+                                <div class="login-validation-message o-form-validation-msg">
                                     @Html.ValidationMessageFor(o => o.Password)
                                 </div>
                             </td>
@@ -40,7 +40,7 @@
                             <td>@Html.LabelFor(o => o.ConfirmPassword)</td>
                             <td>
                                 @Html.PasswordFor(o => o.ConfirmPassword)
-                                <div class="login-validation-message o-login-validation-msg">
+                                <div class="login-validation-message o-form-validation-msg">
                                     @Html.ValidationMessageFor(o => o.ConfirmPassword)
                                 </div>
                             </td>
@@ -48,8 +48,8 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <div class="o-login-btn-div">
-                                    <input type="submit" value="Zarejestruj" class="o-login-btn" />
+                                <div class="o-form-btn-div">
+                                    <input type="submit" value="Zarejestruj" class="o-form-btn" />
                                 </div>
                             </td>
                         </tr>
@@ -60,9 +60,7 @@
                     <div class="o-login-register-btn">
                         Masz już konto? <a href="@Url.Action("Login")">Zaloguj się!</a>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -73,4 +71,4 @@
     <script src="~/Scripts/jquery-3.5.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-} 
+}

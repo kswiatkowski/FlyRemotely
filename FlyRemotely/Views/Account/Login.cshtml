@@ -8,20 +8,21 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                @using (@Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                @using (@Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
                 {
-                    @Html.AntiForgeryToken() //checking if the request is from our site
+                    @Html.AntiForgeryToken() //checking if the request comes from our site
 
                     <div id="login-error">
                         @Html.ValidationMessage("loginerror", "")
+                        @Html.ValidationSummary()
                     </div>
 
-                    <table id="login-table" class="o-login-table">
+                    <table id="login-table" class="o-form-table">
                         <tr>
                             <td>@Html.LabelFor(o => o.Email)</td>
                             <td>
                                 @Html.TextBoxFor(o => o.Email)
-                                <div class="login-validation-message o-login-validation-msg">
+                                <div class="login-validation-message o-form-validation-msg">
                                     @Html.ValidationMessageFor(o => o.Email)
                                 </div>
                             </td>
@@ -30,7 +31,7 @@
                             <td>@Html.LabelFor(o => o.Password)</td>
                             <td>
                                 @Html.PasswordFor(o => o.Password)
-                                <div class="login-validation-message o-login-validation-msg">
+                                <div class="login-validation-message o-form-validation-msg">
                                     @Html.ValidationMessageFor(o => o.Password)
                                 </div>
                             </td>
@@ -42,8 +43,8 @@
                                     @Html.CheckBoxFor(m => m.Remember, new { @checked = "checked" })
                                     @Html.LabelFor(m => m.Remember)
                                 </div>
-                                <div class="o-login-btn-div">
-                                    <input type="submit" value="Zaloguj" class="o-login-btn" />
+                                <div class="o-form-btn-div">
+                                    <input type="submit" value="Zaloguj" class="o-form-btn" />
                                 </div>
 
                             </td>
@@ -55,7 +56,6 @@
                     <div class="o-login-register-btn">
                         Nie masz jeszcze konta? <a href="@Url.Action("Register")">Zarejestruj się!</a>
                     </div>
-
                 </div>
 
             </div>
@@ -63,9 +63,10 @@
     </div>
 </div>
 
+
 @section Scripts
 {
     <script src="~/Scripts/jquery-3.5.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-} 
+}
