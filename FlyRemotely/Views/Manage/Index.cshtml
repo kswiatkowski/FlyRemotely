@@ -1,0 +1,86 @@
+﻿@model FlyRemotely.ViewModels.ManageCredentialsViewModel
+@{
+    ViewBag.Title = "Moje konto";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2 o-manage-heading">
+            Zmień hasło
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            @using (Html.BeginForm("ChangePassword", "Manage", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="manage-error o-pass-validation-msg">
+                    @Html.ValidationMessage("password-error", "")
+                </div>
+
+                if (Model.Message.HasValue)
+                {
+                    <div class="manage-message">
+                        @switch (Model.Message)
+                        {
+                            case FlyRemotely.Controllers.ManageController.ManageMessageId.ChangePasswordSuccess:
+                                @: Hasło zmienione pomyślnie!
+                                break;
+                            case FlyRemotely.Controllers.ManageController.ManageMessageId.Error:
+                                @: Wystąpił błąd
+                                break;
+                        }
+                    </div>
+                }
+
+                <table id="password-table" class="o-form-table o-pass-validation-msg-2">
+                    <tr>
+                        <td>@Html.LabelFor(o => o.ChangePasswordViewModel.OldPassword, "Stare hasło:")</td>
+                        <td>
+                            @Html.PasswordFor(o => o.ChangePasswordViewModel.OldPassword)
+                            <div class="login-validation-message o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.OldPassword)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.ChangePasswordViewModel.NewPassword, "Nowe hasło:")</td>
+                        <td>
+                            @Html.PasswordFor(o => o.ChangePasswordViewModel.NewPassword)
+                            <div class="login-validation-message o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.NewPassword)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.ChangePasswordViewModel.ConfirmPassword, "Potwierdź hasło:")</td>
+                        <td>
+                            @Html.PasswordFor(o => o.ChangePasswordViewModel.ConfirmPassword)
+                            <div class="login-validation-message">
+                                @Html.ValidationMessageFor(o => o.ChangePasswordViewModel.ConfirmPassword)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div class="checkbox">
+                            </div>
+                            <div class="o-form-btn-div">
+                                <input type="submit" value="Zmień" class="submitLink o-form-btn" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
