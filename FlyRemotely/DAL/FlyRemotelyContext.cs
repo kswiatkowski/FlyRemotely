@@ -22,6 +22,7 @@ namespace FlyRemotely.DAL
 
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Category> Categories { get; set;}
+        public DbSet<Favorite> Favourites { get; set; }
 
 
         //Disable the "s" addition conventions at the end of the table name (database)

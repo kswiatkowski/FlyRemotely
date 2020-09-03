@@ -182,5 +182,19 @@ namespace FlyRemotely.Controllers
             db.SaveChanges();
             return RedirectToAction("OffersList");
         }
+
+        [Authorize]
+        public ActionResult AddToFavourites(int favouriteOfferId)
+        {
+            string userId = User.Identity.GetUserId();
+            var favouriteOffers = new List<Favorite>();
+            favouriteOffers = db.Favourites.Where(x => x.UserId == userId && x.OfferId == favouriteOfferId).ToList();
+            if (favouriteOffers.Count == 0)
+            {
+                db.Favourites.Add(new Favorite { OfferId = favouriteOfferId, UserId = userId });
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", "Catalog", new { offerId = favouriteOfferId });
+        }
     }
 }

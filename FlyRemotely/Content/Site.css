@@ -565,7 +565,7 @@ body {
 }
 
     .o-details-btn-1:hover {
-        color: black;
+        color: #19b5fe;
         border: 2px solid black;
         text-decoration: none;
     }
@@ -918,3 +918,14 @@ body {
 .o-newStatus {
 }
 
+img.o-details-heart {
+    height: 25px; 
+    margin-right: 5px;
+    margin-left: -5px;
+}
+
+@media (max-width: 991px) {
+    img.o-details-heart {
+        height: 20px;
+    }
+}

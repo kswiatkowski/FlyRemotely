@@ -141,6 +141,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\heart.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -343,8 +344,13 @@
     <Compile Include="Migrations\202009011048598_Add AspIdentity.designer.cs">
       <DependentUpon>202009011048598_Add AspIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009030721052_favorite model.cs" />
+    <Compile Include="Migrations\202009030721052_favorite model.designer.cs">
+      <DependentUpon>202009030721052_favorite model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Offer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -403,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009011048598_Add AspIdentity.resx">
       <DependentUpon>202009011048598_Add AspIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009030721052_favorite model.resx">
+      <DependentUpon>202009030721052_favorite model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
