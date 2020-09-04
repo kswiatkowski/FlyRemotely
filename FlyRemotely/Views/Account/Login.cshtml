@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-lg-8 offset-lg-2">
                 @using (@Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
                 {
                     @Html.AntiForgeryToken() //checking if the request comes from our site

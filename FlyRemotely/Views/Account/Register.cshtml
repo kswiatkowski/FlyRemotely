@@ -7,13 +7,14 @@
 <div class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-lg-8 offset-lg-2">
                 @using (@Html.BeginForm("Register", "Account"))
                 {
                     @Html.AntiForgeryToken() //checking if the request comes from our site
 
                     <div id="login-error">
                         @Html.ValidationMessage("loginerror", "")
+                        @Html.ValidationSummary()
                     </div>
 
                     <table id="login-table" class="o-form-table">

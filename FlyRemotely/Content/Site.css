@@ -903,9 +903,9 @@ body {
     font-weight: 300;
     padding: 0px 15px 0px 15px;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid dimgray;
     transition: all 0.5s;
-    color: black;
+    color: dimgray;
 }
 
     .o-offer-item-btn:hover {
@@ -913,6 +913,11 @@ body {
         border: 1px solid #19b5fe;
         text-decoration: none;
     }
+
+.o-offer-item-text {
+    color: dimgray;
+    text-align: center;
+}
 
 @media (max-width: 991px) {
     .o-offer-item-btn {

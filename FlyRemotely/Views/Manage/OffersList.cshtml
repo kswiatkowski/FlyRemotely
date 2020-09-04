@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<FlyRemotely.Models.Offer>
+@using FlyRemotely.Infrastructure
 @{
     ViewBag.Title = "Moje konto";
     Layout = "~/Views/Shared/_PageLayout.cshtml";
@@ -19,25 +20,33 @@
     {
         foreach (var offer in Model)
         {
-            <div class="row o-offer-group text-center">
-                <div class="col-12 col-lg-2 align-self-center">
-                    <span class="o-text-span-bold">Nr. oferty:</span> <br class="o-offer-br">
-                    <span class="o-text-span-light">@offer.OfferId</span> <br>
+            <div class="row o-ad-row">
+                <div class="col-md-2 align-self-center o-ad-company-img-div">
+                    <img class="o-ad-company-img" src="@Url.CompanyPhotoSourcePath(offer.CompanyPhotoSource)" />
                 </div>
-                <div class="col-12 col-lg-2 align-self-center">
-                    <span class="o-text-span-bold">Tytuł:</span> <br class="o-offer-br">
-                    <span class="o-text-span-light">@offer.Title</span> <br>
+                <div class="col-md-4 align-self-center">
+                    <div class="o-ad-title">
+                        @offer.Title
+                    </div>
+                    <div class="o-ad-company-name">
+                        @offer.CompanyName
+                    </div>
+                    <div class="o-ad-job-type">
+                        @offer.Type - @offer.Salary
+                    </div>
                 </div>
-                <div class="col-12 col-lg-2 align-self-center">
-                    <span class="o-text-span-bold">Kategoria:</span> <br class="o-offer-br">
-                    <span class="o-text-span-light">@offer.Category.Name</span> <br>
+                <div class="col-md-2 align-self-center">
+                    <div class="o-ad-featured">
+                        <div class="o-add-date">
+                            Od @offer.DateAdded.ToString("dd.MM.yyyy")
+                        </div>
+                        <div class="o-ad-lang">
+                            @offer.Category.Name
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-lg-2 align-self-center">
-                    <span class="o-text-span-bold">Data:</span> <br class="o-offer-br">
-                    <span class="o-text-span-light">@offer.DateAdded.ToString("dd-MM-yyyy")</span>
-                </div>
-                <div class="col-12 col-lg-2 align-self-center">
-                    <span class="o-text-span-bold">Status:</span> <br class="o-offer-br">
+                <div class="col-md-2 align-self-center text-center">
+                    <span class="o-text-span-bold o-offer-item-text">Status:</span> <br class="o-offer-br">
                     @if (ViewBag.UserIsAdmin)
                     {
                         using (Html.BeginForm("ChangeOfferStatus", "Manage"))
@@ -48,25 +57,44 @@
                     }
                     else
                     {
-                        <span class="o-text-span-light">@offer.Status</span>
+                        <span class="o-text-span-light o-offer-item-text">@offer.Status</span>
                     }
                 </div>
-                <div class="col-12 col-lg-2 align-self-center">
+                <div class="col-md-2 align-self-center">
                     <div class="o-offer-item-btn-div">
                         <a class="o-offer-item-btn" href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })">Podgląd</a>
                     </div>
-                    @if (ViewBag.UserIsAdmin == false && offer.Status == FlyRemotely.Models.OfferStatus.Nieaktywne)
+                    @if (ViewBag.UserIsAdmin == true)
                     {
-                        <div class="o-offer-item-btn-div">
-                            <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferStatusUser", "Manage", new { offerId = offer.OfferId, isActive = false })">Aktywuj</a>
-                        </div>
+                        if (offer.Featured == true)
+                        {
+                            <div class="o-offer-item-btn-div">
+                                <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferFeatured", "Manage", new { offerId = offer.OfferId, isFeatured = true })">Usuń wyróżnienie</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="o-offer-item-btn-div">
+                                <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferFeatured", "Manage", new { offerId = offer.OfferId, isFeatured = false })">Wyróżnij</a>
+                            </div>
+                        }
                     }
-                    else if (ViewBag.UserIsAdmin == false && offer.Status == FlyRemotely.Models.OfferStatus.Aktywne)
+                    else
                     {
-                        <div class="o-offer-item-btn-div">
-                            <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferStatusUser", "Manage", new { offerId = offer.OfferId, isActive = true })">Dezaktywuj</a>
-                        </div>
+                        if (offer.Status == FlyRemotely.Models.OfferStatus.Nieaktywne)
+                        {
+                            <div class="o-offer-item-btn-div">
+                                <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferStatusUser", "Manage", new { offerId = offer.OfferId, isActive = false })">Aktywuj</a>
+                            </div>
+                        }
+                        else if (offer.Status == FlyRemotely.Models.OfferStatus.Aktywne)
+                        {
+                            <div class="o-offer-item-btn-div">
+                                <a class="o-offer-item-btn" href="@Url.Action("ChangeOfferStatusUser", "Manage", new { offerId = offer.OfferId, isActive = true })">Dezaktywuj</a>
+                            </div>
+                        }
                     }
+
                 </div>
             </div>
         }

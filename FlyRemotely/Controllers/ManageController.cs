@@ -148,7 +148,7 @@ namespace FlyRemotely.Controllers
 
             IEnumerable<Offer> userOffers;
 
-            if (true)
+            if (isAdmin)
             {
                 userOffers = db.Offers.Include("Category").OrderByDescending(x => x.DateAdded).ToArray();
             }
@@ -182,6 +182,22 @@ namespace FlyRemotely.Controllers
             else
             {
                 offerToModify.Status = Models.OfferStatus.Aktywne;
+            }
+            db.SaveChanges();
+            return RedirectToAction("OffersList");
+        }
+
+        [Authorize]
+        public ActionResult ChangeOfferFeatured(int offerId, bool isFeatured)
+        {
+            Offer offerToModify = db.Offers.Find(offerId);
+            if (isFeatured)
+            {
+                offerToModify.Featured = false;
+            }
+            else
+            {
+                offerToModify.Featured = true;
             }
             db.SaveChanges();
             return RedirectToAction("OffersList");
