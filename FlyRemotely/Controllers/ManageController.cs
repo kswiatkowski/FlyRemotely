@@ -184,17 +184,44 @@ namespace FlyRemotely.Controllers
         }
 
         [Authorize]
-        public ActionResult AddToFavourites(int favouriteOfferId)
+        public ActionResult AddToFavorites(int favoriteOfferId)
         {
             string userId = User.Identity.GetUserId();
-            var favouriteOffers = new List<Favorite>();
-            favouriteOffers = db.Favourites.Where(x => x.UserId == userId && x.OfferId == favouriteOfferId).ToList();
-            if (favouriteOffers.Count == 0)
+            var favoriteOffers = new List<Favorite>();
+            favoriteOffers = db.Favourites.Where(x => x.UserId == userId && x.OfferId == favoriteOfferId).ToList();
+            if (favoriteOffers.Count == 0)
             {
-                db.Favourites.Add(new Favorite { OfferId = favouriteOfferId, UserId = userId });
+                db.Favourites.Add(new Favorite { OfferId = favoriteOfferId, UserId = userId });
                 db.SaveChanges();
             }
-            return RedirectToAction("Details", "Catalog", new { offerId = favouriteOfferId });
+            return RedirectToAction("Details", "Catalog", new { offerId = favoriteOfferId });
+        }
+
+        [Authorize]
+        public ActionResult FavoritesList()
+        {
+            string userId = User.Identity.GetUserId();
+            List<Favorite> myFavourite = db.Favourites.Where(x => x.UserId == userId).ToList();
+            List<int> myId = new List<int>();
+            
+            foreach (Favorite favourite in myFavourite)
+            {
+                myId.Add(favourite.OfferId);
+            }
+            
+            IEnumerable<Offer> myOffer = db.Offers.Where(x => myId.Contains(x.OfferId)).ToArray();
+            return View(myOffer);
+        }
+
+        [Authorize]
+        public ActionResult RemoveFromFavorites(int favoriteOfferId)
+        {
+            string userId = User.Identity.GetUserId();
+            Favorite itemToRemove = db.Favourites.First(x => x.OfferId == favoriteOfferId && x.UserId == userId);
+            db.Favourites.Remove(itemToRemove);
+            db.SaveChanges();
+
+            return RedirectToAction("FavoritesList");
         }
     }
 }

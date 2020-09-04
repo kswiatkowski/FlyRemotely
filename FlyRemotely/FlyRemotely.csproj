@@ -141,7 +141,9 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\heart-black.png" />
     <Content Include="Content\Images\heart.png" />
+    <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -383,6 +385,8 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\OffersList.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\Shared\_PartialManageNav.cshtml" />
+    <Content Include="Views\Manage\FavoritesList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

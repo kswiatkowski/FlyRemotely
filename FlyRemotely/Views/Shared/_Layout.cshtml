@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | Portal Pracy w ASP.NET MVC</title>
+    <link rel="shortcut icon" href="@Url.Content("~/Content/Images/favicon.ico")" />
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/core.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/autocomplete.css")" rel="stylesheet" type="text/css" />
@@ -20,7 +21,7 @@
         <div class="container-fluid o-navbar">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
-                    <a href="#" class="o-logo-link">
+                    <a href="@Url.Action("Index", "Home")" class="o-logo-link">
                         <img class="o-logo" src="@Url.Content("~/Content/Images/logo-1.png")" /><span class="o-logo-text ">JobPortal</span>
                     </a>
 
@@ -29,29 +30,19 @@
                     <div class="collapse navbar-collapse" id="mainmenu">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item px-lg-2 px-xl-3">
-                                <a href="#" class="nav-link o-menu-item">Start</a>
+                                <a href="@Url.Action("Index", "Home")" class="nav-link o-menu-item">Start</a>
                             </li>
                             <li class="nav-item px-lg-2 px-xl-3">
-                                <a href="#" class="nav-link o-menu-item">Oferty Pracy</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle o-menu-item" data-toggle="dropdown">Kategorie<b class="caret"></b></a>
-                                <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Python</a>
-                                    <a href="#" class="dropdown-item">Python</a>
-                                    <a href="#" class="dropdown-item">Python</a>
-                                    <a href="#" class="dropdown-item">Python</a>
-                                    <a href="#" class="dropdown-item">Python</a>
-                                </div>
+                                <a href="@Url.Action("Index", "Home")#oferty" class="nav-link o-menu-item">Oferty Pracy</a>
                             </li>
                             <li class="nav-item px-lg-2 px-xl-3">
                                 <a href="#" class="nav-link o-menu-item-social">GitHub</a>
                             </li>
                             <li class="nav-item px-lg-2 px-xl-3">
-                                <a href="@Url.Action("Index", "Manage")" class="nav-link o-menu-item">Moje konto</a>
+                                <a href="@Url.Action("Index", "Manage")" class="nav-link o-menu-item">Moje Konto</a>
                             </li>
                             <li class="nav-item px-lg-2 px-xl-3">
-                                <a href="#" class="nav-link o-menu-item o-menu-item-post">Oferty Pracy</a>
+                                <a href="@Url.Action("AddOffer", "Manage")" class="nav-link o-menu-item o-menu-item-post">Dodaj Ogłoszenie</a>
                             </li>
                         </ul>
                     </div>
@@ -75,10 +66,10 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-6 text-center text-lg-right o-baner-btn-row">
-                    <a href="#" class="o-baner-btn-1">Dodaj Ogłoszenie</a>
+                    <a href="#" class="o-baner-btn-1">Przeglądaj Oferty</a>
                 </div>
                 <div class="col-12 col-lg-6 text-center text-lg-left o-baner-btn-row">
-                    <a href="#" class="o-baner-btn-2">Przeglądaj Oferty</a>
+                    <a href="#" class="o-baner-btn-2">Dodaj Ogłoszenie</a>
                 </div>
             </div>
         </div>

@@ -4,23 +4,7 @@
     Layout = "~/Views/Shared/_PageLayout.cshtml";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-8 offset-lg-2">
-            <div class="d-flex justify-content-around">
-                <div class="o-manage-bar-btn-div">
-                    <a class="o-manage-bar-btn" href="@Url.Action("Index", "Manage")">Edycja danych</a>
-                </div>
-                <div class="o-manage-bar-btn-div">
-                    <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Lista ofert</a>
-                </div>
-                @*<div class="o-manage-bar-btn-div">
-                        <a class="o-manage-bar-btn" href="#">Dodaj kurs</a>
-                    </div>*@
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_PartialManageNav")
 
 <div class="container">
     <div class="row">

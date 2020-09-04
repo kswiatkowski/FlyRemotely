@@ -1,0 +1,73 @@
+﻿@model IEnumerable<FlyRemotely.Models.Offer>
+@using FlyRemotely.Infrastructure
+@{
+    ViewBag.Title = "Moje konto";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+@Html.Partial("_PartialManageNav")
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 offset-lg-2 o-manage-heading">
+                Ulubione oferty
+            </div>
+        </div>
+
+        @if (Model.Any())
+        {
+            foreach (var offer in Model)
+            {
+                <div class="row o-ad-row">
+                    <div class="col-md-2 align-self-center o-ad-company-img-div">
+                        <img class="o-ad-company-img" src="@Url.CompanyPhotoSourcePath(offer.CompanyPhotoSource)" />
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <div class="o-ad-title">
+                            @offer.Title
+                        </div>
+                        <div class="o-ad-company-name">
+                            @offer.CompanyName
+                        </div>
+                        <div class="o-ad-job-type">
+                            @offer.Type - @offer.Salary
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <div class="o-ad-featured">
+                            <div class="o-add-date">
+                                Od @offer.DateAdded.ToString("dd.MM.yyyy")
+                            </div>
+                            <div class="o-ad-lang">
+                                @offer.Category.Name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <div class="o-offer-item-btn-div">
+                            <a class="o-offer-item-btn" href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })">Podgląd</a>
+                        </div>
+                        <div class="o-offer-item-btn-div">
+                            <a class="o-offer-item-btn" href="@Url.Action("RemoveFromFavorites", "Manage", new { favoriteOfferId = offer.OfferId })">Usuń z ulubionych</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-12 o-offer-empty">
+                    Brak ulubionych ofert
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+}

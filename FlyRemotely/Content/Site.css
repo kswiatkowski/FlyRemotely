@@ -850,6 +850,10 @@ body {
         font-size: 14px;
         padding: 4px 10px 4px 10px;
     }
+
+    .o-manage-bar-btn-div {
+        padding-bottom: 35px;
+    }
 }
 
 .o-offer-group {
@@ -889,6 +893,7 @@ body {
 .o-offer-item-btn-div {
     margin-top: 5px;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 .o-offer-item-btn {
@@ -924,8 +929,19 @@ img.o-details-heart {
     margin-left: -5px;
 }
 
+img.o-manage-bar-heart {
+    height: 19px;
+    margin-right: 5px;
+    margin-left: -5px;
+}
+
 @media (max-width: 991px) {
-    img.o-details-heart {
-        height: 20px;
+    img .o-details-heart {
+        height: 19px;
+    }
+
+    img.o-manage-bar-heart {
+        height: 17px;
+        margin-top: -2px;
     }
 }

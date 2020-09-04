@@ -3,7 +3,7 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
-  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+  <mvcSiteMapNode title="Strona Główna" controller="Home" action="Index">
     <mvcSiteMapNode title="Category" controller="Catalog" action="Index" dynamicNodeProvider="FlyRemotely.Infrastructure.CategoriesDynamicNodeProvider, FlyRemotely">
       <mvcSiteMapNode title="Offer" controller="Catalog" action="Details" dynamicNodeProvider="FlyRemotely.Infrastructure.OffersDynamicNodeProvider, FlyRemotely" />
     </mvcSiteMapNode>
@@ -11,7 +11,8 @@
       <mvcSiteMapNode title="Rejestracja" controller="Account" action="Register" />
       <mvcSiteMapNode title="Logowanie" controller="Account" action="Login" />
       <mvcSiteMapNode title="Lista ofert" controller="Manage" action="OffersList" />
-      <mvcSiteMapNode title="Ulubione oferty" controller="Manage" action="FavoriteOffers" />
+      <mvcSiteMapNode title="Ulubione" controller="Manage" action="FavoritesList" />
+      <mvcSiteMapNode title="Dodaj ofertę" controller="Manage" action="AddOffer" />
     </mvcSiteMapNode>
   </mvcSiteMapNode>
 

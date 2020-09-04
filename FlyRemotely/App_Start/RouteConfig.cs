@@ -44,6 +44,16 @@ namespace FlyRemotely
                defaults: new { controller = "Manage", action = "OffersList" });
 
             routes.MapRoute(
+               name: "AddOffer",
+               url: "moje-konto/dodaj-oferte",
+               defaults: new { controller = "Manage", action = "AddOffer" });
+
+            routes.MapRoute(
+               name: "FavoriteList",
+               url: "moje-konto/ulubione",
+               defaults: new { controller = "Manage", action = "FavoritesList" });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
