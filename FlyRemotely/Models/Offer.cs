@@ -16,6 +16,7 @@ namespace FlyRemotely.Models
         public string CompanyWebsite { get; set; }
         public string CompanyDescription { get; set; }
         public string CompanyPhotoSource { get; set; }
+        public string ApplicationEmail { get; set; }
 
         public bool Featured { get; set; }
         public DateTime DateAdded { get; set; }

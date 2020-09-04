@@ -969,3 +969,14 @@ img.o-manage-bar-heart {
         width: 200px;
     }
 }
+
+.o-modal-email-application {
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    .o-modal-email-application
+    {
+        font-size: 14px;
+    }
+}

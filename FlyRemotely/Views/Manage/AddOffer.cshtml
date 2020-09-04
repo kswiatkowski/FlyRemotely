@@ -123,6 +123,15 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>@Html.LabelFor(o => o.Offer.ApplicationEmail, "Email - rekrutacja:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.ApplicationEmail)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.ApplicationEmail)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>@Html.LabelFor(o => o.Categories, "Kategoria:")</td>
                         <td>@Html.DropDownListFor(m => m.Offer.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name", Model.Categories.First().CategoryId))</td>
                     </tr>

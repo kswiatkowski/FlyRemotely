@@ -4,7 +4,14 @@
             <a class="o-manage-bar-btn" href="@Url.Action("Index", "Manage")">Edycja danych</a>
         </div>
         <div class="col-6 col-lg-3 d-flex justify-content-around o-manage-bar-btn-div">
-            <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Lista ofert</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Zarządzaj ofertami</a>
+            }
+            else
+            {
+                <a class="o-manage-bar-btn" href="@Url.Action("OffersList", "Manage")">Moje oferty</a>
+            }
         </div>
         <div class="col-6 col-lg-3 d-flex justify-content-around o-manage-bar-btn-div">
             <a class="o-manage-bar-btn" href="@Url.Action("FavoritesList", "Manage")">

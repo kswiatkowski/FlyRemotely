@@ -87,7 +87,26 @@
                 </a>
             </div>
             <div class="col-12 col-lg-6 text-center text-lg-left o-details-btn-row">
-                <a href="#" class="o-details-btn-2">Aplikuj na ofertę</a>
+                <a class="o-details-btn-2" href="#modal-application-email" data-toggle="modal" data-target="#modal-application-email">Aplikuj na ofertę</a>
+                <!-- Modal -->
+                <div class="modal fade" id="modal-application-email" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="exampleModalLongTitle">Aplikacja</h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body o-modal-email-application">
+                                Przyślij swoje CV na adres
+                                <a href="mailto:@Model.ApplicationEmail">@Model.ApplicationEmail</a><br />
+                                W temacie wiadomości wpisz nazwę stanowiska, na które aplikujesz.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -107,3 +126,9 @@
 @Html.Action("GetFeaturedOffers", new { quantity = 2 })
 
 @Html.Action("GetCategories")
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+}

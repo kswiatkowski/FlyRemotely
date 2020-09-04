@@ -351,6 +351,10 @@
     <Compile Include="Migrations\202009030721052_favorite model.designer.cs">
       <DependentUpon>202009030721052_favorite model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009040817062_add ApplicationEmail to model.cs" />
+    <Compile Include="Migrations\202009040817062_add ApplicationEmail to model.designer.cs">
+      <DependentUpon>202009040817062_add ApplicationEmail to model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Favorite.cs" />
@@ -419,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009030721052_favorite model.resx">
       <DependentUpon>202009030721052_favorite model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009040817062_add ApplicationEmail to model.resx">
+      <DependentUpon>202009040817062_add ApplicationEmail to model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
