@@ -1,11 +1,15 @@
 ﻿using FlyRemotely.App_Start;
 using FlyRemotely.DAL;
+using FlyRemotely.Infrastructure;
 using FlyRemotely.Models;
 using FlyRemotely.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -222,6 +226,82 @@ namespace FlyRemotely.Controllers
             db.SaveChanges();
 
             return RedirectToAction("FavoritesList");
+        }
+
+        [Authorize]
+        public ActionResult AddOffer(int? offerId, bool? confirm)
+        {
+            Offer offer;
+            if (offerId.HasValue)
+            {
+                ViewBag.EditMode = true;
+                offer = db.Offers.Find(offerId);
+            }
+            else
+            {
+                ViewBag.EditMode = false;
+                offer = new Offer();
+            }
+
+            var result = new EditOfferViewModel();
+            result.Categories = db.Categories.ToList();
+            result.Offer = offer;
+            //confirm when [HttpPost] AddOfffer succeed
+            result.Confirm = confirm;
+
+            return View(result);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult AddOffer(EditOfferViewModel model, HttpPostedFileBase file)
+        {
+            if (model.Offer.OfferId > 0)
+            {
+                // edit
+                model.Offer.Status = Models.OfferStatus.Oczekuje;
+                db.Entry(model.Offer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AddOffer", new { confirm = true });
+            }
+            else
+            {
+                //add
+                if (file != null && file.ContentLength > 0)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var fileExt = Path.GetExtension(file.FileName);
+                        var filename = Guid.NewGuid() + fileExt;
+                        var path = Path.Combine(Server.MapPath(AppConfig.CompanyPhotoSourceFolder), filename);
+                        file.SaveAs(path);
+
+                        model.Offer.CompanyPhotoSource = filename;
+                        model.Offer.DateAdded = DateTime.Now;
+                        model.Offer.UserId = User.Identity.GetUserId();
+                        model.Offer.Status = Models.OfferStatus.Oczekuje;
+
+                        db.Offers.Add(model.Offer);
+                        db.SaveChanges();
+
+                        return RedirectToAction("AddOffer", new { confirm = true });
+                    }
+                    else
+                    {
+                        var categories = db.Categories.ToList();
+                        model.Categories = categories;
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Nie wskazano pliku");
+                    // in case of an error - the model will be forwarded, but without a category (to dropdown list)
+                    var categories = db.Categories.ToList();
+                    model.Categories = categories;
+                    return View(model);
+                }
+            }
         }
     }
 }

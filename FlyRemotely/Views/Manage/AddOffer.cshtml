@@ -1,0 +1,152 @@
+﻿@model FlyRemotely.ViewModels.EditOfferViewModel
+@{
+    ViewBag.Title = "Moje konto";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        @Html.Partial("_PartialManageNav")
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2 o-manage-heading">
+            Dodaj ofertę
+        </div>
+    </div>
+    @if (Model.Confirm.HasValue && Model.Confirm.Value)
+    {
+        <div class="row">
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="col-12 col-lg-8 offset-lg-2 o-manage-addbook-confirm">
+                    Zmiany wprowadzone pomyślnie!
+                </div>
+            }
+            else
+            {
+                <div class="col-12 col-lg-8 offset-lg-2 o-manage-addbook-confirm">
+                    Twoje ogłoszenie dostało dodane i oczekuje na akceptację administratora! <br>
+                    Status ogłoszenia możesz sprawdzić na stronie <a href="@Url.Action("OffersList", "Manage")">Moje Oferty</a>
+                </div>
+            }
+        </div>
+    }
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            @using (Html.BeginForm("AddOffer", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="manage-error o-pass-validation-msg">
+                    @Html.ValidationSummary()
+                </div>
+                @Html.HiddenFor(o => o.Offer.OfferId)
+                @Html.HiddenFor(o => o.Offer.DateAdded)
+                @Html.HiddenFor(o => o.Offer.CompanyPhotoSource)
+                @Html.HiddenFor(o => o.Offer.Featured)
+                @Html.HiddenFor(o => o.Offer.Status)
+
+                <table class="o-form-table">
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.Title, "Tytuł:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.Title)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.Title)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.Type, "Wymiar czasu pracy:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.Type)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.Type)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.Salary, "Wynagrodzenie:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.Salary)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.Salary)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.Requirements, "Wymagania:")</td>
+                        <td>
+                            @Html.TextAreaFor(o => o.Offer.Requirements, new { @class = "o-textarea" })
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.Requirements)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.Description, "Opis stanowiska:")</td>
+                        <td>
+                            @Html.TextAreaFor(o => o.Offer.Description, new { @class = "o-textarea" })
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.Description)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.CompanyName, "Nazwa firmy:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.CompanyName)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.CompanyName)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.CompanyWebsite, "Strona internetowa:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.CompanyWebsite)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.CompanyWebsite)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Offer.CompanyDescription, "Opis firmy:")</td>
+                        <td>
+                            @Html.TextBoxFor(o => o.Offer.CompanyDescription)
+                            <div class="o-form-validation-msg">
+                                @Html.ValidationMessageFor(o => o.Offer.CompanyDescription)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(o => o.Categories, "Kategoria:")</td>
+                        <td>@Html.DropDownListFor(m => m.Offer.CategoryId, new SelectList(Model.Categories, "CategoryId", "Name", Model.Categories.First().CategoryId))</td>
+                    </tr>
+                    @if (ViewBag.EditMode == null || !ViewBag.EditMode)
+                    {
+                        <tr>
+                            <td>@Html.LabelFor(o => o.Offer.CompanyDescription, "Logo firmy:")</td>
+                            <td>
+                                <div class="upload">
+                                    <input type="file" name="file" />
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="2">
+                            <div class="o-form-btn-div">
+                                <input type="submit" value="Potwierdź" class="submitLink o-form-btn" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
