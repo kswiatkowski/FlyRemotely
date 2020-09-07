@@ -276,6 +276,7 @@ namespace FlyRemotely.Controllers
             {
                 // edit
                 model.Offer.Status = Models.OfferStatus.Oczekuje;
+                model.Offer.UserId = User.Identity.GetUserId();
                 db.Entry(model.Offer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("AddOffer", new { confirm = true });

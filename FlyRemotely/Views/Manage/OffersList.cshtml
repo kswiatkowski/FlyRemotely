@@ -64,6 +64,9 @@
                     <div class="o-offer-item-btn-div">
                         <a class="o-offer-item-btn" href="@Url.Action("Details", "Catalog", new { offerId = offer.OfferId })">Podgląd</a>
                     </div>
+                    <div class="o-offer-item-btn-div">
+                        <a class="o-offer-item-btn" href="@Url.Action("AddOffer", "Manage", new { offerId = offer.OfferId })">Edytuj</a>
+                    </div>
                     @if (ViewBag.UserIsAdmin == true)
                     {
                         if (offer.Featured == true)

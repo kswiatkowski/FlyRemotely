@@ -60,7 +60,7 @@
                     <div class="o-baner-text-3">
                         w technologii ASP.NET MVC
                         <br class="d-lg-none">
-                        <a class="o-baner-button">Zastosowane rozwiązania</a>
+                        <button type="button" class="o-baner-button" data-toggle="modal" data-target="#modal-functions">Zastosowane rozwiązania</button>
                     </div>
                 </div>
             </div>
@@ -95,4 +95,54 @@
 </body>
 </html>
 
+<!-- Modal -->
+<div class="modal fade" id="modal-functions" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Zastosowane rozwiązania</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body o-modal-text">
+                <span class="o-modal-text-bold">Skrót:</span>
+                Entity Framework (CodeFirst), Bootstrap, RWD, Cache, ASP Identity, Linq, JavaScript, Ajax, jQuery, MvcSiteMapProvider, Unobtrusive Validation, i wiele więcej...<br><br>
+
+                <span class="o-modal-text-bold">Katalog ofert:</span>
+                <ul>
+                    <li>pamięć podręczna - pobieranie listy kategorii i wyróżnionych ofert (cache 24h) (strona główna)</li>
+                    <li>asynchroniczna wyszukiwarka filtrująca wyniki (ajax)</li>
+                    <li>podpowiedzi wyszukiwarki (data-autocomplete) (ajax)</li>
+                    <li>BreadCrumbs (MvcSiteMapProvider) - ścieżka na każdej podstronie</li>
+                </ul>
+                <span class="o-modal-text-bold">Zarządzanie ofertami:</span>
+                <ul>
+                    <li>oferty wyróżnione - wyświetlają się w stopce podstrony każdej oferty oraz jako pierwsze w katalogu ofert</li>
+                    <li>do zarządzania ofertami wyróżnionymi wymagana jest rola administratora</li>
+                    <li>możliwość dodawania ofert 'do ulubionych' (po zalogowaniu)</li>
+                    <li>możliwość zarządzania ulubionymi ofertami w swoim profilu</li>
+                    <li>możliwość dodawania nowych ofert i edycji istniejących (włącznie ze zdjęciem)</li>
+                    <li>nowe/edytowane oferty otrzymują status 'oczekuje' - do zaakceptowania przez administratora</li>
+                    <li>zarządzanie statusami ofert (oczekuje, aktywna, nieaktywna, zablokowana)</li>
+                    <li>użytkownicy bez uprawnień administratora mają możliwość zmiany statusu oferty wyłączenie na aktywna/nieaktywna</li>
+                </ul>
+                <span class="o-modal-text-bold">Konto użytkownika:</span>
+                <ul>
+                    <li>system rejestracji i logowania z szyfrowaniem danych (ASP Identity)</li>
+                    <li>role użytkowników z innymi uprawnieniami (admin)</li>
+                    <li>formularze z walidacją asynchroniczną (po stronie klienta) (Microsoft.jQuery.Unobtrusive.Validation)</li>
+                    <li>modele danych z walidacją opartą o atrybuty (DataAnnotations)</li>
+                    <li>zarządzanie danymi użytkownika (zmiana hasła)</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="o-form-btn" data-dismiss="modal">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-3.5.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
 @RenderSection("Scripts", required: false)

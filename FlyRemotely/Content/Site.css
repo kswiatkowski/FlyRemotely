@@ -985,3 +985,17 @@ img.o-manage-bar-heart {
         font-size: 14px;
     }
 }
+
+.o-modal-text {
+    font-weight: 300;
+}
+
+.o-modal-text-bold {
+    font-weight: 600;
+}
+
+@media (max-width: 991px) {
+    .o-modal-text {
+        font-size: 14px;
+    }
+}
